@@ -1,13 +1,14 @@
-function myMap (iterable, functionToBeApplied) {
+const myMap = (iterable, functionToBeApplied) => {
   /*Takes an iterable and a  function as arguments, applies the
   function to each element of the iterable and returns a new transformed
   iterable*/
-
-  var returnedIterable = iterable
-  // Create a local copy of the iterable to operate on.
-
-  for (var i = 0; i < iterable.length; i++) {
-    returnedIterable[i] = functionToBeApplied(returnedIterable[i])
+  if (iterable.length === 0) {
+    return []
+  } else {
+    return [functionToBeApplied(iterable[0])]
+    .concat(myMap (iterable.slice(1), functionToBeApplied))
   }
-  return returnedIterable
 }
+
+let b = myMap([], a =>  2 * a)
+console.log(b)
